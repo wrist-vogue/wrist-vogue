@@ -1,1 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wrist Vogue - Luxury Watches</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">WRIST VOGUE</h1>
+                <nav class="nav">
+                    <button class="nav-btn" data-category="all">ALL</button>
+                    <button class="nav-btn" data-category="men">MEN</button>
+                    <button class="nav-btn" data-category="women">WOMEN</button>
+                    <button class="nav-btn" data-category="accessories">ACCESSORIES</button>
+                </nav>
+                <div class="header-actions">
+                    <button class="admin-btn" onclick="toggleAdmin()">ADMIN</button>
+                    <button class="cart-btn" onclick="toggleCart()">
+                        <span class="cart-icon">🛒</span>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+                </div>
+            </div>
+        </div>
+    </header>
 
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-btn" onclick="toggleMenu()">✕</button>
+        <nav class="mobile-nav">
+            <button class="mobile-nav-btn" data-category="all" onclick="toggleMenu()">ALL</button>
+            <button class="mobile-nav-btn" data-category="men" onclick="toggleMenu()">MEN</button>
+            <button class="mobile-nav-btn" data-category="women" onclick="toggleMenu()">WOMEN</button>
+            <button class="mobile-nav-btn" data-category="accessories" onclick="toggleMenu()">ACCESSORIES</button>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2 class="hero-title">Timeless Elegance</h2>
+            <p class="hero-subtitle">Discover our curated collection of luxury watches, crafted for those who appreciate precision and beauty.</p>
+            <button class="hero-btn">Explore Collection</button>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search watches...">
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-btn" onclick="toggleCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-price" id="totalPrice">$0.00</span>
+            </div>
+            <button class="checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <h2>Product Management</h2>
+            <button class="close-btn" onclick="toggleAdmin()">✕</button>
+        </div>
+        <div class="admin-content">
+            <button class="add-product-btn" onclick="toggleAddForm()">+ Add Product</button>
+            
+            <!-- Add Product Form -->
+            <form class="add-product-form" id="addProductForm" style="display: none;">
+                <h3>Add New Product</h3>
+                <input type="text" id="productName" placeholder="Product Name" required>
+                <select id="productCategory" required>
+                    <option value="men">Men</option>
+                    <option value="women">Women</option>
+                    <option value="accessories">Accessories</option>
+                </select>
+                <input type="number" id="productPrice" placeholder="Price" step="0.01" required>
+                <input type="url" id="productImage" placeholder="Image URL" required>
+                <textarea id="productDescription" placeholder="Description" required></textarea>
+                <button type="submit" class="submit-btn">Add Product</button>
+                <button type="button" class="cancel-btn" onclick="toggleAddForm()">Cancel</button>
+            </form>
+
+            <!-- Products Table -->
+            <div class="products-table">
+                <table id="productsTable">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTableBody">
+                        <!-- Products will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <a href="mailto:contact@wristvogue.com">contact@wristvogue.com</a>
+                </div>
+                <div class="contact-item">
+                    <h3>Phone</h3>
+                    <a href="tel:+1234567890">+1 (234) 567-890</a>
+                </div>
+                <div class="contact-item">
+                    <h3>Location</h3>
+                    <p>123 Luxury Ave, New York, NY 10001</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Wrist Vogue. All rights reserved. Crafted with precision and elegance.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+  </html>
+  
