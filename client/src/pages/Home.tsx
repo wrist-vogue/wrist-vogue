@@ -317,29 +317,30 @@ export default function Home() {
       {/* Main Content */}
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="relative h-screen flex items-center overflow-hidden">
+        <section className="relative h-screen flex items-center justify-center overflow-hidden bg-background">
           <div className="absolute inset-0">
-            <img
-              src="https://private-us-east-1.manuscdn.com/sessionFile/5h8pRCZ4op5f5DyGbRSE9D/sandbox/oLx7qsYubbXDYplhCy1tea-img-4_1771911279000_na1fn_aGVyby1icmFuZC1zaG93Y2FzZQ.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvNWg4cFJDWjRvcDVmNUR5R2JSU0U5RC9zYW5kYm94L29MeDdxc1l1YmJYRFlwbGhDeTF0ZWEtaW1nLTRfMTc3MTkxMTI3OTAwMF9uYTFmbl9hR1Z5YnkxaWNtRnVaQzF6YUc5M1kyRnpaUS5wbmc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xOTIwLGhfMTkyMC9mb3JtYXQsd2VicC9xdWFsaXR5LHFfODAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=o~4jlox2Q~7MsiPoRoc3kv1XD9wQ66ZaKF4Qz2I8L5X~pR8Q20vFl3SymqG-9fbmbrw1Z-fOoX-ljkbyftJNWFmLfzVLdmHLq7axWsnLBFC2zrZc8vKV44m~7PCw2XZNDz91VSVklg1Qj9~SdIm1IfJMsJ3SqREQtH~Y9AuLvZSlGGXQ3EuUiYMnJDea4CpoV8ZYkJpg3SzdmNVgM3gJiK4ZHMBxkUiKLD3qKo12H5SlZg16iklsp0z2fiogz9bZ19kUWrAaralEbqtavBCcRC9B~bZKPpfe~IWuzsNg1bjd8Dy~joznwkAo7wGwrZRIAZsdQDRXM0H35AkblLbiyA__"
-              alt="Hero"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black/40" />
+            {/* Dark background */}
+            <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-card" />
             
             {/* Floating Particles */}
-            <div className="particle particle-1" style={{ width: '40px', height: '40px', top: '20%', left: '10%' }} />
-            <div className="particle particle-2" style={{ width: '60px', height: '60px', top: '40%', right: '15%' }} />
-            <div className="particle particle-3" style={{ width: '30px', height: '30px', bottom: '20%', left: '20%' }} />
-            <div className="particle particle-1" style={{ width: '50px', height: '50px', top: '60%', right: '10%' }} />
-            <div className="particle particle-2" style={{ width: '35px', height: '35px', bottom: '30%', right: '25%' }} />
+            <div className="particle particle-1" style={{ width: '40px', height: '40px', top: '10%', left: '5%' }} />
+            <div className="particle particle-2" style={{ width: '60px', height: '60px', top: '20%', right: '10%' }} />
+            <div className="particle particle-3" style={{ width: '30px', height: '30px', bottom: '30%', left: '15%' }} />
+            <div className="particle particle-1" style={{ width: '50px', height: '50px', top: '40%', right: '5%' }} />
+            <div className="particle particle-2" style={{ width: '35px', height: '35px', bottom: '15%', right: '20%' }} />
+            <div className="particle particle-3" style={{ width: '45px', height: '45px', top: '60%', left: '10%' }} />
+            <div className="particle particle-1" style={{ width: '55px', height: '55px', bottom: '40%', left: '25%' }} />
+            <div className="particle particle-2" style={{ width: '25px', height: '25px', top: '30%', left: '50%' }} />
+            <div className="particle particle-3" style={{ width: '65px', height: '65px', bottom: '20%', right: '15%' }} />
+            <div className="particle particle-1" style={{ width: '38px', height: '38px', top: '50%', right: '30%' }} />
           </div>
 
-          <div className="container relative z-10">
-            <div className="max-w-2xl animate-fade-in">
-              <h1 className="text-6xl md:text-7xl font-bold mb-6 text-white leading-tight">
+          <div className="container relative z-10 text-center">
+            <div className="max-w-3xl mx-auto animate-fade-in">
+              <h1 className="text-6xl md:text-8xl font-bold mb-6 text-white leading-tight">
                 Timeless Elegance
               </h1>
-              <p className="text-xl md:text-2xl text-gray-200 mb-8 font-light">
+              <p className="text-lg md:text-2xl text-gray-300 mb-8 font-light">
                 Discover our curated collection of luxury watches, crafted for those who appreciate precision and beauty.
               </p>
               <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-smooth px-8 py-3 text-lg">
