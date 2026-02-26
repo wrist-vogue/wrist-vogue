@@ -5,7 +5,7 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
-import Admin from "./pages/Admin";
+import AdminPanel from "./pages/AdminPanel";
 
 /**
  * DESIGN PHILOSOPHY: Minimalist Luxury - "The Void Elegance"
@@ -15,12 +15,12 @@ import Admin from "./pages/Admin";
  * - Smooth 300-400ms transitions throughout
  * - Playfair Display for elegant headings, Lato for clean body text
  */
-
 function Router() {
+  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />
-      <Route path={"/admin"} component={Admin} />
+      <Route path={"/admin"} component={AdminPanel} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

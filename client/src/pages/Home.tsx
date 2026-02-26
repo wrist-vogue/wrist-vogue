@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { ShoppingCart, Menu, X, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/_core/hooks/useAuth";
+import { trpc } from "@/lib/trpc";
 
 /**
  * DESIGN PHILOSOPHY: Minimalist Luxury - "The Void Elegance"
@@ -23,6 +25,7 @@ interface CartItem extends Product {
 }
 
 export default function Home() {
+  const { user } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -168,6 +171,11 @@ export default function Home() {
             <a href="/admin" className="text-xs uppercase tracking-wider hover:text-primary transition-smooth hidden md:block">
               Admin
             </a>
+            {user && (
+              <a href="/dashboard" className="text-xs uppercase tracking-wider hover:text-primary transition-smooth hidden md:block">
+                Dashboard
+              </a>
+            )}
             <button
               onClick={() => setCartOpen(!cartOpen)}
               className="relative transition-smooth hover:text-primary"
@@ -392,23 +400,39 @@ export default function Home() {
         <section id="contact" className="bg-card border-t border-border py-20">
           <div className="container">
             <h2 className="text-4xl font-bold mb-12 text-center">Get in Touch</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <h3 className="text-xl font-bold mb-2">Email</h3>
-                <a href="mailto:contact@wristvogue.com" className="hover-gold-underline text-muted-foreground hover:text-primary transition-smooth">
-                  contact@wristvogue.com
-                </a>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="text-center">
                 <h3 className="text-xl font-bold mb-2">Phone</h3>
-                <a href="tel:+1234567890" className="hover-gold-underline text-muted-foreground hover:text-primary transition-smooth">
-                  +1 (234) 567-890
+                <a href="tel:+256783690283" className="hover-gold-underline text-muted-foreground hover:text-primary transition-smooth block mb-3">
+                  +256 783 690 283
+                </a>
+                <p className="text-sm text-muted-foreground mb-4">WhatsApp & Call</p>
+                <a 
+                  href="https://wa.me/256757833620?text=Hello%20Wrist%20Vogue%2C%20I%20would%20like%20to%20order%20from%20your%20collection" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block bg-primary text-primary-foreground px-6 py-2 rounded hover:bg-primary/90 transition-smooth font-semibold"
+                >
+                  💬 Order on WhatsApp
                 </a>
               </div>
               <div className="text-center">
-                <h3 className="text-xl font-bold mb-2">Location</h3>
-                <p className="text-muted-foreground">123 Luxury Ave, New York, NY 10001</p>
+                <h3 className="text-xl font-bold mb-2">Location & Services</h3>
+                <p className="text-muted-foreground mb-2">Pioneer Mall, Kampala</p>
+                <p className="text-sm text-muted-foreground mb-4">Watches • Jewelry • Accessories</p>
+                <p className="text-sm text-primary font-semibold">✓ Delivery Countrywide Available</p>
               </div>
+            </div>
+            <div className="mt-12 text-center">
+              <h3 className="text-lg font-bold mb-4">Follow Us</h3>
+              <a 
+                href="https://instagram.com/_wrist_vogue_" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block text-primary hover:text-primary/80 transition-smooth font-semibold"
+              >
+                Instagram: @_wrist_vogue_
+              </a>
             </div>
           </div>
         </section>

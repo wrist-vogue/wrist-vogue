@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1771919273054,
+      "tag": "0000_luxuriant_inertia",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1771919380479,
+      "tag": "0001_unique_darkhawk",
+      "breakpoints": true
+    }
+  ]
+}
