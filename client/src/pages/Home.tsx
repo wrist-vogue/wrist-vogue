@@ -168,9 +168,6 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-4">
-            <a href="/admin" className="text-xs uppercase tracking-wider hover:text-primary transition-smooth hidden md:block">
-              Admin
-            </a>
             {user && (
               <a href="/dashboard" className="text-xs uppercase tracking-wider hover:text-primary transition-smooth hidden md:block">
                 Dashboard
