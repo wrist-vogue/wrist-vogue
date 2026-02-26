@@ -301,7 +301,7 @@ export default function Home() {
                   <div className="border-t border-border pt-4">
                     <div className="flex justify-between mb-4">
                       <span className="font-semibold">Total:</span>
-                      <span className="text-primary font-bold">${cartTotal.toFixed(2)}</span>
+                      <span className="text-primary font-bold">UGX {(cartTotal * 3700).toLocaleString()}</span>
                     </div>
                     <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-smooth">
                       Checkout
@@ -325,6 +325,13 @@ export default function Home() {
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/40" />
+            
+            {/* Floating Particles */}
+            <div className="particle particle-1" style={{ width: '40px', height: '40px', top: '20%', left: '10%' }} />
+            <div className="particle particle-2" style={{ width: '60px', height: '60px', top: '40%', right: '15%' }} />
+            <div className="particle particle-3" style={{ width: '30px', height: '30px', bottom: '20%', left: '20%' }} />
+            <div className="particle particle-1" style={{ width: '50px', height: '50px', top: '60%', right: '10%' }} />
+            <div className="particle particle-2" style={{ width: '35px', height: '35px', bottom: '30%', right: '25%' }} />
           </div>
 
           <div className="container relative z-10">
@@ -364,7 +371,7 @@ export default function Home() {
             {filteredProducts.map((product, index) => (
               <div
                 key={product.id}
-                className="animate-slide-up transition-smooth hover:scale-105"
+                className="animate-slide-up card-glow"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="relative overflow-hidden mb-6 aspect-square">
@@ -377,7 +384,7 @@ export default function Home() {
                 <h3 className="text-2xl font-bold mb-2">{product.name}</h3>
                 <p className="text-muted-foreground mb-4">{product.description}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-3xl font-bold text-primary">${product.price}</span>
+                  <span className="text-primary font-bold">UGX {(product.price * 3700).toLocaleString()}</span>
                   <Button
                     onClick={() => addToCart(product)}
                     className="bg-primary text-primary-foreground hover:bg-primary/90 transition-smooth"
