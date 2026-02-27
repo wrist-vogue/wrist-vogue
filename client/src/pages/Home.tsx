@@ -31,45 +31,25 @@ export default function Home() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<"all" | "men" | "women" | "accessories">("all");
+
+  // Fetch products from database
+  const { data: dbProducts = [], isLoading, refetch } = trpc.products.list.useQuery();
   const [products, setProducts] = useState<Product[]>([]);
 
-  // Load products from localStorage or initialize with sample data
+  // Update products when database products change
   useEffect(() => {
-    const savedProducts = localStorage.getItem("wristVogueProducts");
-    if (savedProducts) {
-      setProducts(JSON.parse(savedProducts));
-    } else {
-      // Initialize with sample products
-      const sampleProducts: Product[] = [
-        {
-          id: "1",
-          name: "Chronograph Elite",
-          category: "men",
-          price: 2499,
-          image: "https://private-us-east-1.manuscdn.com/sessionFile/5h8pRCZ4op5f5DyGbRSE9D/sandbox/oLx7qsYubbXDYplhCy1tea-img-1_1771911275000_na1fn_aGVyby13YXRjaC1tZW4tMQ.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvNWg4cFJDWjRvcDVmNUR5R2JSU0U5RC9zYW5kYm94L29MeDdxc1l1YmJYRFlwbGhDeTF0ZWEtaW1nLTFfMTc3MTkxMTI3NTAwMF9uYTFmbl9hR1Z5YnkxM1lYUmphQzF0Wlc0dE1RLnBuZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE5MjAsaF8xOTIwL2Zvcm1hdCx3ZWJwL3F1YWxpdHkscV84MCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=TWOLqj5bBnzX~dMu20x5~U6RAR3PtuzY-zZGiFYPc0S4zLE4UoFPjzO1JwP7bMJajfRwdRR57jRjSA1Y3wtuGHRP-bcbJTLTyT1vbhMSIyYDdbczlPgJkTFIHBFZXqqjRq385dohQeLYB3OQZUrxUup8bxjP6oBJ1LTPuLVWfLdX95kSwwPniVJyBmWwcnbYGkf-RgFjONpham7asbCjsBkoBeC7jwpcxkVZjWs2FGobIC13faunvT4RGmChTZrERXOLkd1B7bqAuvVMSMAfU358Jh1qKAqWYPJQxHU9B9V5MMcr2ZTwNhjMBomrF5NmetYfSf3ZiuvviewSEf2WQg__",
-          description: "Premium men's chronograph with Swiss movement"
-        },
-        {
-          id: "2",
-          name: "Rose Gold Elegance",
-          category: "women",
-          price: 1899,
-          image: "https://private-us-east-1.manuscdn.com/sessionFile/5h8pRCZ4op5f5DyGbRSE9D/sandbox/oLx7qsYubbXDYplhCy1tea-img-2_1771911278000_na1fn_aGVyby13YXRjaC13b21lbi0x.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvNWg4cFJDWjRvcDVmNUR5R2JSU0U5RC9zYW5kYm94L29MeDdxc1l1YmJYRFlwbGhDeTF0ZWEtaW1nLTJfMTc3MTkxMTI3ODAwMF9uYTFmbl9hR1Z5YnkxM1lYUmphQzEzYjIxbGJpMHgucG5nP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=T8LDnM0hmtgItx1M2VRFwopHP28tlYr8vdY8AtXIeYVSNIJHZGJBwRc1ZEeZKZlvzMtc~oULQMODpJM5tvJwj656mrAgFCXSUogGJ375SgXvFp5X1eZtVFReuQvKR7ce57yNKqXQe3veha6yUUsAFOk8xWdoQ7qeCWd2ICVEhnUmmgwuzASTYhHBSFQbbbouUy5-T1gUUj~Rw3GyEh1m~nLZjDp8OKpoeYrhBDuNQP~L-mX2M~Na-9kFvPvTsa7KD6jPMvk2iWK5OWhlbk3EqaKTfI-1Xl-qI7a7-PpbSa11y8SOJvBc4c5WRFIkqrLJMscwfGc4XSPpZfs6aTZYYw__",
-          description: "Elegant rose gold watch with mother-of-pearl dial"
-        },
-        {
-          id: "3",
-          name: "Premium Leather Strap",
-          category: "accessories",
-          price: 299,
-          image: "https://private-us-east-1.manuscdn.com/sessionFile/5h8pRCZ4op5f5DyGbRSE9D/sandbox/oLx7qsYubbXDYplhCy1tea-img-3_1771911279000_na1fn_aGVyby1hY2Nlc3Nvcmllcy0x.png?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvNWg4cFJDWjRvcDVmNUR5R2JSU0U5RC9zYW5kYm94L29MeDdxc1l1YmJYRFlwbGhDeTF0ZWEtaW1nLTNfMTc3MTkxMTI3OTAwMF9uYTFmbl9hR1Z5YnkxaFkyTmxjM052Y21sbGN5MHgucG5nP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=Qizcx~omIJGvdS6VvC0SC9GDbvKC-LtUKpWdk3koH~VM-f8vB9F3wrBrCS~~k1LEVz3lTyRosgqPhP--Gv1xm5B8-NYYYzmqFXaOdFIkBUgByA54XEEDVHQ7LzviIUX1UmfEb7PNW3SRNtc8ZqYcVyrVHnCrmTmaNFq2J~jJmgdJbTrJEND3BeM9~VFhgM7No8kPiNIqU5O1dfOJHcOhF~0zzGAWdLFiKM9NZhxcSjczj48fGCTlabEdXQ5St7BdEqE5-p0ZcwhgR5-KLjz2WZDGekoecn~mttIO9gYYSu8vmw7dqfjFwoKFqU5zD21Uh5RAwAiW1lkxFOzgm7zrcA__",
-          description: "Handcrafted Italian leather watch strap"
-        }
-      ];
-      setProducts(sampleProducts);
-      localStorage.setItem("wristVogueProducts", JSON.stringify(sampleProducts));
+    if (dbProducts && dbProducts.length > 0) {
+      const mappedProducts = dbProducts.map((p: any) => ({
+        id: p.id,
+        name: p.name,
+        category: p.category,
+        price: typeof p.price === 'string' ? parseFloat(p.price) : p.price,
+        image: p.image,
+        description: p.description,
+      }));
+      setProducts(mappedProducts);
     }
-  }, []);
+  }, [dbProducts]);
 
   // Load cart from localStorage
   useEffect(() => {
