@@ -379,7 +379,7 @@ export default function Home() {
                 <h3 className="text-2xl font-bold mb-2">{product.name}</h3>
                 <p className="text-muted-foreground mb-4">{product.description}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-primary font-bold">UGX {(product.price * 3700).toLocaleString()}</span>
+                  <span className="text-primary font-bold">UGX {typeof product.price === 'string' ? parseInt(product.price).toLocaleString() : product.price.toLocaleString()}</span>
                   <Button
                     onClick={() => addToCart(product)}
                     className="bg-primary text-primary-foreground hover:bg-primary/90 transition-smooth"
