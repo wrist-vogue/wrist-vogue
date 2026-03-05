@@ -223,15 +223,15 @@ export default function AdminPanel() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold mb-2">Price ($)</label>
+                    <label className="block text-sm font-semibold mb-2">Price (UGX)</label>
                     <input
                       type="number"
                       name="price"
                       value={formData.price || ""}
                       onChange={handleInputChange}
                       className="w-full px-4 py-2 bg-background border border-border text-foreground focus:outline-none focus:border-primary transition-smooth"
-                      placeholder="e.g., 2499"
-                      step="0.01"
+                      placeholder="e.g., 2500000"
+                      step="1"
                     />
                   </div>
 
@@ -336,7 +336,7 @@ export default function AdminPanel() {
                         </div>
                       </td>
                       <td className="py-4 px-4 capitalize">{product.category}</td>
-                      <td className="py-4 px-4 text-primary font-bold">${product.price}</td>
+                      <td className="py-4 px-4 text-primary font-bold">UGX {typeof product.price === 'string' ? parseInt(product.price).toLocaleString() : (product.price as number).toLocaleString()}</td>
                       <td className="py-4 px-4 text-sm text-muted-foreground max-w-xs truncate">
                         {product.description}
                       </td>

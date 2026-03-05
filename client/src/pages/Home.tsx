@@ -18,6 +18,8 @@ interface Product {
   price: number;
   image: string;
   description: string;
+  variants?: Array<{ color: string; image: string }>;
+  baseProduct?: string;
 }
 
 interface CartItem extends Product {
@@ -345,7 +347,7 @@ export default function Home() {
 
         {/* Products Grid */}
         <section className="container py-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-16">
             {filteredProducts.map((product, index) => (
               <div
                 key={product.id}
@@ -359,6 +361,21 @@ export default function Home() {
                     className="w-full h-full object-cover transition-smooth hover:scale-110"
                   />
                 </div>
+                {product.variants && product.variants.length > 0 && (
+                  <div className="mb-4 pb-4 border-b border-border">
+                    <p className="text-sm text-muted-foreground mb-3">Available Colors:</p>
+                    <div className="flex gap-2 overflow-x-auto pb-2">
+                      {product.variants.map((variant: any, idx: number) => (
+                        <div key={idx} className="flex-shrink-0 text-center">
+                          <div className="w-12 h-12 rounded-full border-2 border-primary cursor-pointer hover:border-primary/80 transition-smooth overflow-hidden">
+                            <img src={variant.image} alt={variant.color} className="w-full h-full object-cover" />
+                          </div>
+                          <p className="text-xs text-muted-foreground mt-1 whitespace-nowrap">{variant.color}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 <h3 className="text-2xl font-bold mb-2">{product.name}</h3>
                 <p className="text-muted-foreground mb-4">{product.description}</p>
                 <div className="flex items-center justify-between">
