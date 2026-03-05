@@ -260,7 +260,6 @@
   .card-glow {
     position: relative;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 2.5rem;
   }
   
   .card-glow::before {
@@ -268,7 +267,7 @@
     position: absolute;
     inset: -1px;
     background: radial-gradient(circle at center, rgba(212, 175, 55, 0.5), transparent 70%);
-    border-radius: 2.5rem;
+    border-radius: inherit;
     opacity: 0;
     transition: opacity 0.3s ease-out;
     pointer-events: none;
