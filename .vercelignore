@@ -1,0 +1,10 @@
+.git
+.gitignore
+.manus-logs
+.webdev
+drizzle/migrations
+node_modules
+pnpm-lock.yaml
+*.md
+vitest.config.ts
+server/*.test.ts
